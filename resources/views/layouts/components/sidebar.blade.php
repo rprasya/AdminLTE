@@ -1,3 +1,18 @@
+@php
+    $menus = [
+        (object) [
+            'title' => 'Dashboard',
+            'path' => '/',
+            'icon' => 'fas fa-th',
+        ],
+        (object) [
+            'title' => 'Products',
+            'path' => '/products',
+            'icon' => 'fas fa-th',
+        ],
+    ];
+@endphp
+
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="../index3.html" class="brand-link">
@@ -38,14 +53,16 @@
                 data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
-                <li class="nav-item">
-                    <a href="widgets.html" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Dashboard
-                        </p>
-                    </a>
-                </li>
+                @foreach ($menus as $menu)
+                    <li class="nav-item">
+                        <a href="{{ $menu->path }}" class="nav-link {{ request()->is(ltrim($menu->path, '/')) ? 'active' : '' }}">
+                            <i class="nav-icon {{ $menu->icon }}"></i>
+                            <p>
+                                {{ $menu->title }}
+                            </p>
+                        </a>
+                    </li>
+                @endforeach
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
