@@ -55,7 +55,8 @@
                  with font-awesome or any other icon font library -->
                 @foreach ($menus as $menu)
                     <li class="nav-item">
-                        <a href="{{ $menu->path }}" class="nav-link {{ request()->is(ltrim($menu->path, '/')) ? 'active' : '' }}">
+                        <a href="{{ $menu->path }}"
+                            class="nav-link {{ request()->is(ltrim($menu->path, '/')) ? 'active' : '' }}">
                             <i class="nav-icon {{ $menu->icon }}"></i>
                             <p>
                                 {{ $menu->title }}
