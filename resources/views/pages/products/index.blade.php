@@ -19,7 +19,7 @@
         <div class="col">
             <div class="card">
                 <div class="card-body">
-                    <table class="table table-bordered text-center items-center">
+                    <table class="table table-bordered text-center">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -40,7 +40,7 @@
                                     <td>{{ $product->sku }}</td>
                                     <td>{{ $product->price }}</td>
                                     <td>{{ $product->stock }}</td>
-                                    <td>{{ $product->category_id }}</td>
+                                    <td>{{ $product->category->name }}</td>
                                 </tr>
                             </tbody>
                         @endforeach
