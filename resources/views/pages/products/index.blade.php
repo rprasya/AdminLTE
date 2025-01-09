@@ -15,34 +15,38 @@
 @endsection
 
 @section('content')
-<div class="row">
-    <div class="col">
-        <div class="card">
-            <div class="card-body">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Product</th>
-                            <th>Description</th>
-                            <th>Code Product</th>
-                            <th>Price</th>
-                            <th>Category</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>No</td>
-                            <td>Product</td>
-                            <td>Description</td>
-                            <td>Code Product</td>
-                            <td>Price</td>
-                            <td>Category</td>
-                        </tr>
-                    </tbody>
-                </table>
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-bordered text-center items-center">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Product</th>
+                                <th>Description</th>
+                                <th>Code Product</th>
+                                <th>Price</th>
+                                <th>stock</th>
+                                <th>Category</th>
+                            </tr>
+                        </thead>
+                        @foreach ($products as $product)
+                            <tbody>
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $product->name }}</td>
+                                    <td>{{ $product->description }}</td>
+                                    <td>{{ $product->sku }}</td>
+                                    <td>{{ $product->price }}</td>
+                                    <td>{{ $product->stock }}</td>
+                                    <td>{{ $product->category_id }}</td>
+                                </tr>
+                            </tbody>
+                        @endforeach
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
