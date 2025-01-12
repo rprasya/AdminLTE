@@ -18,6 +18,11 @@
     <div class="row">
         <div class="col">
             <div class="card">
+                <div class="card-header d-flex justify-content-end">
+                    <a href="{{ route('products.create') }}" class="btn btn-sm btn-primary">
+                        Add Product
+                    </a>
+                </div>
                 <div class="card-body">
                     <table class="table table-bordered text-center">
                         <thead>
