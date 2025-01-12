@@ -34,6 +34,15 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name'=>'required|min:3',
+            'description'=>'nullable',
+            'sku'=>'required',
+            'price'=>'required',
+            'stock'=>'required',
+            'category_id'=>'required',
+        ]);
+
         $data = [
             'name'=>$request->input('name'),
             'description'=>$request->input('description'),

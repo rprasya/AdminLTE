@@ -17,34 +17,68 @@
 @section('content')
     <div class="row">
         <div class="col">
-            <div class="card">
-                <form action="{{ route('products.post') }}" method="POST">
+            {{-- @if ($errors->any())
+                @dd($errors->all())
+            @endif --}}
+            <form action="{{ route('products.post') }}" method="POST">
+                <div class="card">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
                             <label for="name" class="form-label">Product Name</label>
                             <input type="text" name="name" id="name" placeholder="Input Product Name"
-                                class="form-control" autocomplete="off">
+                                autocomplete="off"
+                                class="form-control @error('name')
+                                    is-invalid
+                                @enderror"
+                                value="{{ old('name') }}">
+                            @error('name')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="description" class="form-label">Description</label>
                             <textarea name="description" id="description" cols="30" rows="10" placeholder="Input Description Product"
-                                class="form-control"></textarea>
+                                class="form-control @error('description')
+                                    is-invalid
+                                @enderror">{{ old('description') }}</textarea>
+                            @error('description')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="sku" class="form-label">Code Product</label>
                             <input type="text" name="sku" id="sku" placeholder="Input Code Product"
-                                class="form-control" autocomplete="off">
+                                autocomplete="off"
+                                class="form-control @error('sku')
+                                    is-invalid
+                                @enderror"
+                                value="{{ old('sku') }}">
+                            @error('sku')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="price" class="form-label">Price</label>
                             <input type="number" name="price" id="price" placeholder="Input Price"
-                                class="form-control" autocomplete="off">
+                                class="form-control @error('price')
+                                    is-invalid
+                                @enderror"
+                                value="{{ old('price') }}">
+                            @error('price')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="stock" class="form-label">Stock</label>
                             <input type="number" name="stock" id="stock" placeholder="Input Stock Products"
-                                class="form-control" autocomplete="off">
+                                class="form-control @error('stock')
+                                    is-invalid
+                                @enderror"
+                                value="{{ old('stock') }}">
+                            @error('stock')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="category_id" class="form-label">Category</label>
@@ -61,8 +95,8 @@
                             <button type="submit" class="btn btn-sm btn-success">Save</button>
                         </div>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
 @endsection
