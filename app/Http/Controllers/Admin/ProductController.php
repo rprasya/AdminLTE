@@ -16,6 +16,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::with('category')->get();
+
         return view('pages.products.index', compact('products'));
     }
 
@@ -86,6 +87,8 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Product::where('id', $id)->delete();
+        
+        return redirect()->route('products');
     }
 }
