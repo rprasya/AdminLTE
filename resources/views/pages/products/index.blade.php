@@ -42,18 +42,23 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $product->name }}</td>
-                                    <td>{{ $product->description }}</td>
+                                    <td>{{ $product->description ?? '-' }}</td>
                                     <td>{{ $product->sku }}</td>
-                                    <td>{{ $product->price }}</td>
+                                    <td>{{'Rp' . number_format($product->price, 0, ',' , '.') }}</td>
                                     <td>{{ $product->stock }}</td>
                                     <td>{{ $product->category->name }}</td>
                                     <td>
-                                        <form action="{{ route('products.delete', ['id' => $product->id]) }}"
-                                            method="POST" onsubmit="return confirm('Apakah anda yakin untuk menghapus product ini?')">
-                                            @csrf
-                                            @method('delete')
-                                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                        </form>
+                                        <div class="d-flex">
+                                            <a href="{{ route('products.edit', ['id' => $product->id]) }}"
+                                                class="btn btn-sm btn-warning mr-2">Update</a>
+                                            <form action="{{ route('products.delete', ['id' => $product->id]) }}"
+                                                method="POST"
+                                                onsubmit="return confirm('Apakah anda yakin untuk menghapus product ini?')">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>

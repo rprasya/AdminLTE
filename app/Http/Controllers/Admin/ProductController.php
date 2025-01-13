@@ -71,7 +71,13 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $categories = Category::all();
+        $product = Product::findOrFail($id);
+
+        return view('pages.products.edit', [
+            'categories' => $categories,
+            'product' => $product,
+        ]);
     }
 
     /**
@@ -79,7 +85,27 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name'=>'required|min:3',
+            'description'=>'nullable',
+            'sku'=>'required',
+            'price'=>'required',
+            'stock'=>'required',
+            'category_id'=>'required',
+        ]);
+
+        $data = [
+            'name'=>$request->input('name'),
+            'description'=>$request->input('description'),
+            'sku'=>$request->input('sku'),
+            'price'=>$request->input('price'),
+            'stock'=>$request->input('stock'),
+            'category_id'=>$request->input('category_id'),
+        ];
+
+        Product::where('id', $id)->update($data);
+
+        return redirect()->route('products');
     }
 
     /**
@@ -88,7 +114,7 @@ class ProductController extends Controller
     public function destroy(string $id)
     {
         Product::where('id', $id)->delete();
-        
+
         return redirect()->route('products');
     }
 }
