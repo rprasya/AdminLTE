@@ -3,12 +3,12 @@
         (object) [
             'title' => 'Dashboard',
             'path' => 'dashboard',
-            'icon' => 'fas fa-th',
+            'icon' => 'fas fa-tachometer-alt',
         ],
         (object) [
             'title' => 'Category',
             'path' => 'categories',
-            'icon' => 'fas fa-th',
+            'icon' => 'fas fa-chart-pie',
         ],
         (object) [
             'title' => 'Products',

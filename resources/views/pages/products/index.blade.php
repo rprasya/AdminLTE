@@ -40,11 +40,11 @@
                         @foreach ($products as $product)
                             <tbody>
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ ($products->currentPage() - 1) * $products->perPage() + $loop->index + 1 }}</td>
                                     <td>{{ $product->name }}</td>
                                     <td>{{ $product->description ?? '-' }}</td>
                                     <td>{{ $product->sku }}</td>
-                                    <td>{{'Rp' . number_format($product->price, 0, ',' , '.') }}</td>
+                                    <td>{{ 'Rp' . number_format($product->price, 0, ',', '.') }}</td>
                                     <td>{{ $product->stock }}</td>
                                     <td>{{ $product->category->name }}</td>
                                     <td>
@@ -65,6 +65,7 @@
                         @endforeach
                     </table>
                 </div>
+                <div class="card-footer">{{ $products->links() }}</div>
             </div>
         </div>
     </div>

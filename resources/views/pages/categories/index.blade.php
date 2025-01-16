@@ -3,7 +3,7 @@
 @section('header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>Categories</h1>
+            <h1>Category</h1>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -35,7 +35,7 @@
                         @foreach ($categories as $category)
                             <tbody>
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ ($categories->currentPage() -1) * $categories->perPage() + $loop->index + 1 }}</td>
                                     <td>{{ $category->name }}</td>
                                     <td>{{ $category->slug ?? '-' }}</td>
                                     <td>
@@ -55,6 +55,9 @@
                             </tbody>
                         @endforeach
                     </table>
+                </div>
+                <div class="card-footer">
+                    {{ $categories->links() }}
                 </div>
             </div>
         </div>
