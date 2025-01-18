@@ -12,6 +12,10 @@ Route::get('/login', [AuthController::class, 'login'])->name('login.page');
 Route::post('/login', [AuthController::class, 'authenticate'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+// Register
+Route::get('/register', [AuthController::class, 'register'])->name('register.page');
+Route::post('/register', [AuthController::class, 'createAdmin'])->name('register.user');
+
 // Dashboard
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 

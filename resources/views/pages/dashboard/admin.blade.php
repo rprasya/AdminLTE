@@ -14,6 +14,15 @@
 @endsection
 
 @section('content')
+    @if (session('success-login'))
+        <script>
+            Swal.fire({
+                title: "Berhasil",
+                text: "{{ session('success-login') }}",
+                icon: "success"
+            });
+        </script>
+    @endif
     <div class="row" bis_skin_checked="1">
         <div class="col-lg-3 col-6" bis_skin_checked="1">
             <!-- small box -->
@@ -25,7 +34,8 @@
                 <div class="icon" bis_skin_checked="1">
                     <i class="ion ion-bag"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{ route('categories') }}" class="small-box-footer">More info <i
+                        class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
         <!-- ./col -->
@@ -39,7 +49,8 @@
                 <div class="icon" bis_skin_checked="1">
                     <i class="ion ion-stats-bars"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{ route('products') }}" class="small-box-footer">More info <i
+                        class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
         <!-- ./col -->

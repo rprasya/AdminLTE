@@ -86,7 +86,7 @@ class CategoryController extends Controller
 
         Category::where('id', $id)->update($category);
 
-        return redirect()->route('categories')->with('success', 'Berhasil mengubah category');
+        return redirect()->route('categories')->with('success-register', 'Berhasil mengubah category');
     }
 
     /**
