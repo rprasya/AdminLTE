@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="{{ asset('templates/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('templates/dist/css/adminlte.min.css') }}">
+    <!-- Sweet Alert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="hold-transition login-page">
@@ -23,6 +25,18 @@
             <a href="../../index2.html"><b>Inventory</b>V1</a>
         </div>
         <!-- /.login-logo -->
+        @if (session('error-unauthorized'))
+            {{-- <div class="alert alert-danger">
+                {{ session('error-unauthorized') }}
+            </div> --}}
+            <script>
+                Swal.fire({
+                    title: "Terjadi Kesalahan!",
+                    text: "{{ session('error-unauthorized') }}",
+                    icon: "error"
+                });
+            </script>
+        @endif
         <div class="card">
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Sign in to start your session</p>
@@ -30,9 +44,11 @@
                 <form action="{{ route('login') }}" method="post">
                     @csrf
                     <div class="input-group mb-3">
-                        <input type="email" name="email" class="form-control @error('email')
+                        <input type="email" name="email"
+                            class="form-control @error('email')
                             is-invalid
-                        @enderror" placeholder="Email">
+                        @enderror"
+                            placeholder="Email">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>

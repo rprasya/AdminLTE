@@ -15,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with('category')->paginate(10);
+        $products = Product::with('category')->latest()->paginate(10);
 
         return view('pages.products.index', compact('products'));
     }
@@ -42,6 +42,13 @@ class ProductController extends Controller
             'price'=>'required',
             'stock'=>'required',
             'category_id'=>'required',
+        ], [
+            'name.required' => 'Nama Harus diisi!',
+            'nama.min' => 'Minimal nama 3 karakter',
+            'sku.required' => 'Kode product harus diisi!',
+            'price.required' => 'Harga harus diisi!',
+            'stock.required' => 'Stock harus diisi!',
+            'category_id.required' => 'Category harus diisi!',
         ]);
 
         $data = [
@@ -55,7 +62,7 @@ class ProductController extends Controller
         
         Product::create($data);
 
-        return redirect()->route('products');
+        return redirect()->route('products')->with('success', 'Berhasil menambahkan product');
     }
 
     /**
@@ -92,6 +99,13 @@ class ProductController extends Controller
             'price'=>'required',
             'stock'=>'required',
             'category_id'=>'required',
+        ], [
+            'name.required' => 'Nama Harus diisi!',
+            'nama.min' => 'Minimal nama 3 karakter',
+            'sku.required' => 'Kode product harus diisi!',
+            'price.required' => 'Harga harus diisi!',
+            'stock.required' => 'Stock harus diisi!',
+            'category_id.required' => 'Category harus diisi!',
         ]);
 
         $data = [
@@ -105,7 +119,7 @@ class ProductController extends Controller
 
         Product::where('id', $id)->update($data);
 
-        return redirect()->route('products');
+        return redirect()->route('products')->with('success', 'Berhasil mengubah product');
     }
 
     /**
@@ -115,6 +129,6 @@ class ProductController extends Controller
     {
         Product::where('id', $id)->delete();
 
-        return redirect()->route('products');
+        return redirect()->route('products')->with('success', 'Berhasil menghapus product');
     }
 }

@@ -15,6 +15,15 @@
 @endsection
 
 @section('content')
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                title: "Berhasil",
+                text: "{{ session('success') }}",
+                icon: "success"
+            });
+        </script>
+    @endif
     <div class="row">
         <div class="col">
             <div class="card">
@@ -35,7 +44,8 @@
                         @foreach ($categories as $category)
                             <tbody>
                                 <tr>
-                                    <td>{{ ($categories->currentPage() -1) * $categories->perPage() + $loop->index + 1 }}</td>
+                                    <td>{{ ($categories->currentPage() - 1) * $categories->perPage() + $loop->index + 1 }}
+                                    </td>
                                     <td>{{ $category->name }}</td>
                                     <td>{{ $category->slug ?? '-' }}</td>
                                     <td>

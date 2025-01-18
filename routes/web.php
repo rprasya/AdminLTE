@@ -8,15 +8,15 @@ use App\Http\Middleware\IsLogin;
 use Illuminate\Support\Facades\Route;
 
 // Login
-Route::get('/', [AuthController::class, 'login'])->name('login.page');
+Route::get('/login', [AuthController::class, 'login'])->name('login.page');
 Route::post('/login', [AuthController::class, 'authenticate'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+// Dashboard
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
 Route::middleware(IsLogin::class)->group(function(){
-    // Dashboard
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    
-    
+        
     // PRODUCTS
     // read
     Route::get('/products', [ProductController::class, 'index'])->name('products');
