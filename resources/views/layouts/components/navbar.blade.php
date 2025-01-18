@@ -14,9 +14,13 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-        <form action="{{ route('logout') }}" method="POST">
+        {{-- <form action="{{ route('logout') }}" method="POST">
             @csrf
             <button type="submit" class="btn btn-sm btn-outline-danger">Logout</button>
-        </form>
+        </form> --}}
+        <button type="submit" class="btn btn-sm btn-outline-danger" data-toggle="modal"
+        data-target="#modal-delete-logout">Logout</button>
     </ul>
 </nav>
+
+@include('pages.Auth.logout-confirmation')
