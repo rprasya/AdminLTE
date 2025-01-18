@@ -41,8 +41,8 @@
                                 <th>Slug</th>
                             </tr>
                         </thead>
-                        @foreach ($categories as $category)
-                            <tbody>
+                        <tbody>
+                            @foreach ($categories as $category)
                                 <tr>
                                     <td>{{ ($categories->currentPage() - 1) * $categories->perPage() + $loop->index + 1 }}
                                     </td>
@@ -52,18 +52,21 @@
                                         <div class="d-flex">
                                             <a href="{{ route('categories.edit', ['id' => $category->id]) }}"
                                                 class="btn btn-sm btn-warning mr-2">Update</a>
-                                            <form action="{{ route('categories.delete', ['id' => $category->id]) }}"
+                                            {{-- <form action="{{ route('categories.delete', ['id' => $category->id]) }}"
                                                 method="POST"
                                                 onsubmit="return confirm('Apakah anda yakin untuk menghapus category ini?')">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                            </form>
+                                            </form> --}}
+                                            <button type="submit" class="btn btn-sm btn-danger" data-toggle="modal"
+                                                data-target="#modal-delete-{{ $category->id }}">Delete</button>
                                         </div>
                                     </td>
                                 </tr>
-                            </tbody>
-                        @endforeach
+                                @include('pages.categories.delete-confirmation')
+                            @endforeach
+                        </tbody>
                     </table>
                 </div>
                 <div class="card-footer">

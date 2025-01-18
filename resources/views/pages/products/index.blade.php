@@ -46,8 +46,8 @@
                                 <th>#</th>
                             </tr>
                         </thead>
-                        @foreach ($products as $product)
-                            <tbody>
+                        <tbody>
+                            @foreach ($products as $product)
                                 <tr>
                                     <td>{{ ($products->currentPage() - 1) * $products->perPage() + $loop->index + 1 }}</td>
                                     <td>{{ $product->name }}</td>
@@ -60,18 +60,21 @@
                                         <div class="d-flex">
                                             <a href="{{ route('products.edit', ['id' => $product->id]) }}"
                                                 class="btn btn-sm btn-warning mr-2">Update</a>
-                                            <form action="{{ route('products.delete', ['id' => $product->id]) }}"
+                                            {{-- <form action="{{ route('products.delete', ['id' => $product->id]) }}"
                                                 method="POST"
                                                 onsubmit="return confirm('Apakah anda yakin untuk menghapus product ini?')">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                            </form>
+                                            </form> --}}
+                                            <button type="submit" class="btn btn-sm btn-danger" data-toggle="modal"
+                                            data-target="#modal-delete-{{ $product->id }}">Delete</button>
                                         </div>
                                     </td>
                                 </tr>
-                            </tbody>
-                        @endforeach
+                                @include('pages.products.delete-confirmation')
+                            @endforeach
+                        </tbody>
                     </table>
                 </div>
                 <div class="card-footer">{{ $products->links() }}</div>
