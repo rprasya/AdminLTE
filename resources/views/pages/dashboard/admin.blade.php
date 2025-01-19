@@ -14,15 +14,6 @@
 @endsection
 
 @section('content')
-    @if (session('success-login'))
-        <script>
-            Swal.fire({
-                title: "Berhasil",
-                text: "{{ session('success-login') }}",
-                icon: "success"
-            });
-        </script>
-    @endif
     <div class="row" bis_skin_checked="1">
         <div class="col-lg-3 col-6" bis_skin_checked="1">
             <!-- small box -->
